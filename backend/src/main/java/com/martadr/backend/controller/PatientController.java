@@ -32,7 +32,7 @@ public class PatientController {
 
     @GetMapping("/{id}")
     public PatientDTO find(@PathVariable("id") Long id) {
-        Patient patient = patientBusiness.find(id);
+        Patient patient = patientBusiness.findId(id);
         if (patient == null) {
             return null;
         }
@@ -42,7 +42,7 @@ public class PatientController {
 
     @GetMapping
     public PatientDTO find(@RequestParam("name") String name) {
-        Patient patient = patientBusiness.find(name);
+        Patient patient = patientBusiness.findName(name);
         if (patient == null) {
             return null;
         }

@@ -32,3 +32,14 @@ INSERT INTO patient(name, cpf, date, address, phone) VALUES ('Raisa', '038330040
 INSERT INTO patient(name, cpf, date, address, phone) VALUES ('Laila', '12033353001', '2006-08-16', 'Rua São Luiz, 256', '48998876598');
 INSERT INTO patient(name, cpf, date, address, phone) VALUES ('Jamal', '54196039006', '1978-05-18', 'Rua Vitoria, 456', '48998878390');
 INSERT INTO patient(name, cpf, date, address, phone) VALUES ('David', '07003006006', '1989-06-19', 'Rua Belo, 7823', '48998874623');
+
+INSERT INTO doctor(name, crm, specialty, period, office, phone) VALUES ('Diego', 1234, 'Cardiologista', 0, 0, '48998877665');
+INSERT INTO doctor(name, crm, specialty, period, office, phone) VALUES ('Pablo', 1245, 'Pediatra', 0, 1, '48998877889');
+INSERT INTO doctor(name, crm, specialty, period, office, phone) VALUES ('Maria', 1258, 'Clínico Geral', 0, 2, '48998877995');
+INSERT INTO doctor(name, crm, specialty, period, office, phone) VALUES ('Pedro', 1244, 'Oftalmologista', 0, 3, '48998877332');
+INSERT INTO doctor(name, crm, specialty, period, office, phone) VALUES ('Fabio', 1233, 'Ortopedista', 0, 4, '48998877789');
+INSERT INTO doctor(name, crm, specialty, period, office, phone) VALUES ('Laura', 1212, 'Cardiologista', 1, 0, '48998877112');
+INSERT INTO doctor(name, crm, specialty, period, office, phone) VALUES ('Luana', 1287, 'Pediatra', 1, 1, '48998877213');
+INSERT INTO doctor(name, crm, specialty, period, office, phone) VALUES ('Lucas', 1239, 'Clínico Geral', 1, 2, '48998877654');
+INSERT INTO doctor(name, crm, specialty, period, office, phone) VALUES ('Sofia', 1240, 'Oftalmologista', 1, 3, '48998877789');
+INSERT INTO doctor(name, crm, specialty, period, office, phone) VALUES ('Paulo', 1250, 'Ortopedista', 1, 4, '48998877102');

@@ -21,7 +21,7 @@ public class PatientBusiness {
         return patients;
     }
 
-    public Patient find(Long id) {
+    public Patient findId(Long id) {
         Optional<Patient> optionalPatient = patientRepository.findById(id);
 
         if (optionalPatient.isPresent()) {
@@ -31,8 +31,7 @@ public class PatientBusiness {
         }
     }
 
-
-    public Patient find(String name) {
+    public Patient findName(String name) {
         Optional<Patient> optionalPatient = patientRepository.findByName(name);
 
         if (optionalPatient.isPresent()) {
