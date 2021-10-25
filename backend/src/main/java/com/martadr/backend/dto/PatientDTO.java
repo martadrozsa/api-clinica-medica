@@ -7,6 +7,7 @@ public class PatientDTO {
 
     private Long id;
     private String name;
+    private String cpf;
     private LocalDate date;
     private String address;
     private String phone;
@@ -14,9 +15,10 @@ public class PatientDTO {
     public PatientDTO() {
     }
 
-    public PatientDTO(Long id, String name, LocalDate date, String address, String phone) {
+    public PatientDTO(Long id, String name, String cpf, LocalDate date, String address, String phone) {
         this.id = id;
         this.name = name;
+        this.cpf = cpf;
         this.date = date;
         this.address = address;
         this.phone = phone;
@@ -32,6 +34,14 @@ public class PatientDTO {
 
     public String getName() {
         return name;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public void setName(String name) {

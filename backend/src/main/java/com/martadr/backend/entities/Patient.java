@@ -14,6 +14,9 @@ public class Patient {
     private String name;
 
     @Column
+    private String cpf;
+
+    @Column
     private LocalDate date;
 
     @Column
@@ -25,16 +28,18 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(Long id, String name, LocalDate date, String address, String phone) {
+    public Patient(Long id, String name, String cpf, LocalDate date, String address, String phone) {
         this.id = id;
         this.name = name;
+        this.cpf = cpf;
         this.date = date;
         this.address = address;
         this.phone = phone;
     }
 
-    public Patient(String name, LocalDate date, String address, String phone) {
+    public Patient(String name, String cpf, LocalDate date, String address, String phone) {
         this.name = name;
+        this.cpf = cpf;
         this.date = date;
         this.address = address;
         this.phone = phone;
@@ -50,6 +55,10 @@ public class Patient {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCpf() {
+        return cpf;
     }
 
     public LocalDate getDate() {

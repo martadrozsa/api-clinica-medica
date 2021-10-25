@@ -24,7 +24,7 @@ public class PatientController {
 
         List<PatientDTO> patientDTOS = new ArrayList<>();
         for (Patient patient : patients) {
-            PatientDTO patientDTO = new PatientDTO(patient.getId(), patient.getName(), patient.getDate(), patient.getAddress(), patient.getPhone());
+            PatientDTO patientDTO = new PatientDTO(patient.getId(), patient.getName(), patient.getCpf(), patient.getDate(), patient.getAddress(), patient.getPhone());
             patientDTOS.add(patientDTO);
         }
         return patientDTOS;
@@ -36,7 +36,7 @@ public class PatientController {
         if (patient == null) {
             return null;
         }
-        PatientDTO patientDTO = new PatientDTO(patient.getId(), patient.getName(), patient.getDate(), patient.getAddress(), patient.getAddress());
+        PatientDTO patientDTO = new PatientDTO(patient.getId(), patient.getName(), patient.getCpf(), patient.getDate(), patient.getAddress(), patient.getAddress());
         return patientDTO;
     }
 
@@ -46,20 +46,20 @@ public class PatientController {
         if (patient == null) {
             return null;
         }
-        PatientDTO patientDTO = new PatientDTO(patient.getId(), patient.getName(), patient.getDate(), patient.getAddress(), patient.getAddress());
+        PatientDTO patientDTO = new PatientDTO(patient.getId(), patient.getName(), patient.getCpf(), patient.getDate(), patient.getAddress(), patient.getAddress());
         return patientDTO;
     }
 
     @PostMapping
     public Long createPatient(@RequestBody PatientDTO patientDTO) {
-        Patient patient = new Patient(patientDTO.getName(), patientDTO.getDate(), patientDTO.getAddress(), patientDTO.getPhone());
+        Patient patient = new Patient(patientDTO.getName(), patientDTO.getCpf(), patientDTO.getDate(), patientDTO.getAddress(), patientDTO.getPhone());
         Long id = patientBusiness.save(patient);
         return id;
     }
 
     @PutMapping
     public void update(@RequestBody PatientDTO patientDTO) {
-        Patient patient = new Patient(patientDTO.getId(), patientDTO.getName(), patientDTO.getDate(), patientDTO.getAddress(), patientDTO.getPhone());
+        Patient patient = new Patient(patientDTO.getId(), patientDTO.getName(), patientDTO.getCpf(), patientDTO.getDate(), patientDTO.getAddress(), patientDTO.getPhone());
 
         patientBusiness.save(patient);
     }
