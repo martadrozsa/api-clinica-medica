@@ -24,21 +24,13 @@ public class DoctorBusiness {
     public Doctor findId(Long id) {
         Optional<Doctor> optionalDoctor = doctorRepository.findById(id);
 
-        if (optionalDoctor.isPresent()) {
-            return optionalDoctor.get();
-        } else {
-            return null;
-        }
+        return optionalDoctor.orElse(null);
     }
 
     public Doctor findName(String name) {
         Optional<Doctor> optionalDoctor = doctorRepository.findByName(name);
 
-        if (optionalDoctor.isPresent()) {
-            return optionalDoctor.get();
-        } else {
-            return null;
-        }
+        return optionalDoctor.orElse(null);
     }
 
     public Long save(Doctor doctor) {

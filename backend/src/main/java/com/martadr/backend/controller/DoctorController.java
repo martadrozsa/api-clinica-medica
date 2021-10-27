@@ -68,5 +68,5 @@ public class DoctorController {
     public void delete(@PathVariable("id") Long id) {
         doctorBusiness.delete(id);
     }
-    
+
 }

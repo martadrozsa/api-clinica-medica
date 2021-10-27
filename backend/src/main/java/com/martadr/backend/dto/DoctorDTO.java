@@ -3,6 +3,8 @@ package com.martadr.backend.dto;
 import com.martadr.backend.entities.enums.office.Office;
 import com.martadr.backend.entities.enums.period.Period;
 
+import java.time.LocalDate;
+
 public class DoctorDTO {
 
     private Long id;

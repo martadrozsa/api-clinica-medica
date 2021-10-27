@@ -4,8 +4,10 @@ import com.martadr.backend.entities.enums.office.Office;
 import com.martadr.backend.entities.enums.period.Period;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "doctor")
 public class Doctor {
 
     @Id
@@ -15,7 +17,7 @@ public class Doctor {
     @Column
     private String name;
 
-    @Column
+    @Column(unique = true)
     private Integer crm;
 
     @Column
@@ -29,6 +31,9 @@ public class Doctor {
 
     @Column
     private String phone;
+
+    @OneToMany(mappedBy = "doctor")
+    private List<Appointment> appointments;
 
     public Doctor() {
     }
@@ -103,4 +108,9 @@ public class Doctor {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
 }

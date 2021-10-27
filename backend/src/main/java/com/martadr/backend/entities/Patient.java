@@ -2,8 +2,10 @@ package com.martadr.backend.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
+@Table(name = "patient")
 public class Patient {
 
     @Id
@@ -13,7 +15,7 @@ public class Patient {
     @Column
     private String name;
 
-    @Column
+    @Column(unique = true)
     private String cpf;
 
     @Column
@@ -24,6 +26,9 @@ public class Patient {
 
     @Column
     private String phone;
+
+    @OneToMany(mappedBy = "patient")
+    private List<Appointment> appointments;
 
     public Patient() {
     }
@@ -84,4 +89,9 @@ public class Patient {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
 }

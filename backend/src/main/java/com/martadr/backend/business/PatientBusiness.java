@@ -24,21 +24,13 @@ public class PatientBusiness {
     public Patient findId(Long id) {
         Optional<Patient> optionalPatient = patientRepository.findById(id);
 
-        if (optionalPatient.isPresent()) {
-            return optionalPatient.get();
-        } else {
-            return null;
-        }
+        return optionalPatient.orElse(null);
     }
 
     public Patient findName(String name) {
         Optional<Patient> optionalPatient = patientRepository.findByName(name);
 
-        if (optionalPatient.isPresent()) {
-            return optionalPatient.get();
-        } else {
-            return null;
-        }
+        return optionalPatient.orElse(null);
     }
 
     public Long save(Patient patient) {
