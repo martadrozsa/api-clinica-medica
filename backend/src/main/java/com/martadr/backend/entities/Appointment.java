@@ -18,11 +18,11 @@ public class Appointment {
     @Column
     private Time time;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_doctor", referencedColumnName = "id", nullable = false)
     private Doctor doctor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_patient", referencedColumnName = "id", nullable = false)
     private Patient patient;
 

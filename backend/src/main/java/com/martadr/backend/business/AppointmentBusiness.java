@@ -26,16 +26,17 @@ public class AppointmentBusiness {
         return optionalAppointment.orElse(null);
     }
 
-//    public Appointment findName(String name) {
+    public List<Appointment> findAllByPatientId(Long patientId) {
+        List<Appointment> appointments = appointmentRepository.findAllByPatientId(patientId);
 //        Optional<Appointment> optionalAppointment = appointmentRepository.findByName(name);
-//
-//        return optionalAppointment.orElse(null);
-//    }
 
-//    public Long save(Appointment appointment) {
-//        Appointment savedAppointment = appointmentRepository.save(appointment);
-//        return savedAppointment.getId();
-//    }
+        return appointments;
+    }
+
+    public Long save(Appointment appointment) {
+        Appointment savedAppointment = appointmentRepository.save(appointment);
+        return savedAppointment.getId();
+    }
 
     public void delete(Long id) {
         appointmentRepository.deleteById(id);

@@ -32,7 +32,7 @@ public class Doctor {
     @Column
     private String phone;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY)
     private List<Appointment> appointments;
 
     public Doctor() {
@@ -55,6 +55,10 @@ public class Doctor {
         this.period = period;
         this.office = office;
         this.phone = phone;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {

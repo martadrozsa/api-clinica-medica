@@ -33,13 +33,7 @@ public class AppointmentController {
     @GetMapping("/all")
     public List<AppointmentDTO> getAllAppointments() {
         List<Appointment> appointments = appointmentBusiness.findAll();
-
-        List<AppointmentDTO> appointmentDTOS = new ArrayList<>();
-        for (Appointment appointment : appointments) {
-            AppointmentDTO appointmentDTO = new AppointmentDTO(appointment.getId(), appointment.getDate(), appointment.getTime(), mappingDoctorToDoctorDTO(appointment.getDoctor()), mappingPatientToPatientDTO(appointment.getPatient()));
-            appointmentDTOS.add(appointmentDTO);
-        }
-        return appointmentDTOS;
+        return mappingAppointmentToDTO(appointments);
     }
 
     @GetMapping("/{id}")
@@ -52,25 +46,62 @@ public class AppointmentController {
         return appointmentDTO;
     }
 
-//    @GetMapping
-//    public AppointmentDTO find(@RequestParam("name") String name) {
-//        Appointment appointment = appointmentBusiness.findName(name);
-//        if (appointment == null) {
-//            return null;
-//        }
-//        AppointmentDTO appointmentDTO = new AppointmentDTO(appointment.getId(), appointment.getDate(), appointment.getTime(), mappingDoctorToDoctorDTO(appointment.getDoctor()), mappingPatientToPatientDTO(appointment.getPatient()));
-//        return appointmentDTO;
-//    }
+    @GetMapping
+    public List<AppointmentDTO> findAllByPatientId(@RequestParam("patientId") Long patientId) {
+        List<Appointment> patients = appointmentBusiness.findAllByPatientId(patientId);
+        return mappingAppointmentToDTO(patients);
+    }
 
-//    @PostMapping
-//    public Long createAppointment(@RequestBody AppointmentDTO appointmentDTO) {
-//        Appointment appointment = new Appointment(appointmentDTO.getId(), appointmentDTO.getDate(), appointmentDTO.getTime(), appointmentDTO.getDoctor(), appointmentDTO.getPatient());
-//        Long id = appointmentBusiness.save(appointment);
-//        return id;
-//    }
+    public List<AppointmentDTO> mappingAppointmentToDTO(List<Appointment> appointments) {
+        List<AppointmentDTO> appointmentDTOS = new ArrayList<>();
+
+        for (Appointment appointment : appointments) {
+            AppointmentDTO appointmentDTO = new AppointmentDTO(appointment.getId(), appointment.getDate(), appointment.getTime(), mappingDoctorToDoctorDTO(appointment.getDoctor()), mappingPatientToPatientDTO(appointment.getPatient()));
+            appointmentDTOS.add(appointmentDTO);
+        }
+        return appointmentDTOS;
+    }
+
+    @PostMapping
+    public Long createAppointment(@RequestBody AppointmentDTO appointmentDTO) {
+
+        DoctorDTO doctorDTO = appointmentDTO.getDoctorDTO();
+        Long idDoctor = doctorDTO.getId();
+        Doctor doctor = new Doctor();
+        doctor.setId(idDoctor);
+
+        PatientDTO patientDTO = appointmentDTO.getPatientDTO();
+        Long idPatient = patientDTO.getId();
+        Patient patient = new Patient();
+        patient.setId(idPatient);
+
+        Appointment appointment = new Appointment(null, appointmentDTO.getDate(), appointmentDTO.getTime(), doctor, patient);
+        Long id = appointmentBusiness.save(appointment);
+        return id;
+    }
+
+    @PutMapping
+    public void update(@RequestBody AppointmentDTO appointmentDTO) {
+
+        DoctorDTO doctorDTO = appointmentDTO.getDoctorDTO();
+        Long idDoctor = doctorDTO.getId();
+        Doctor doctor = new Doctor();
+        doctor.setId(idDoctor);
+
+        PatientDTO patientDTO = appointmentDTO.getPatientDTO();
+        Long idPatient = patientDTO.getId();
+        Patient patient = new Patient();
+        patient.setId(idPatient);
+
+        Appointment appointment = new Appointment(appointmentDTO.getId(), appointmentDTO.getDate(), appointmentDTO.getTime(), doctor, patient);
+        appointmentBusiness.save(appointment);
+    }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long id) {
         appointmentBusiness.delete(id);
     }
+
+
+
 }
